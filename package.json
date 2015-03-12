@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  // add engines to tell heroku what versions are needed
-  //for your app
+  "//" : ["I added engines to tell heroku what versions are needed",
+           "for your app"],
   "engines":
   {
     "node":"0.10.x",
