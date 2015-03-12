@@ -12,10 +12,6 @@ angular.module('app').config(function ($routeProvider, $locationProvider) {
 
     // define client routes
     $routeProvider
-        .when('/', { templateUrl: 'partials/main', controller: 'mainCtrl'});
+        .when('/', { templateUrl: 'partials/main', controller: 'mvMainCtrl'});
 });
 
-// temporarily define controller here, later move to a controllers file
-angular.module('app').controller('mainCtrl', ['$scope', function ($scope) {
-    $scope.myVar = "Hello Angular";
-}]);

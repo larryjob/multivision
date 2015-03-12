@@ -67,7 +67,8 @@ db.once('open', function callback() {
     console.log('multivision db opened');
 });
 
-// create a mongoose schema object with field message of type string
+/*// WE DID THIS JUST TO QUICKLY VERIFY A ROUND TRIP TO DATABASE
+//create a mongoose schema object with field message of type string
 var messageSchema = mongoose.Schema({message: String});
 
 // create a mongoose model object on a collection called Message using the schema
@@ -94,7 +95,7 @@ MessageModel.findOne().exec(function (err, messageDoc) {
     else {
         console.log('Got an error: ' + err);
     }
-});
+});*/
 
 // serve up the angularJS Partial JADE views
 app.get('/partials/:partialPath', function (req, res) {
@@ -107,7 +108,9 @@ app.get('/partials/:partialPath', function (req, res) {
 // images, html etc.  a default route.  server always serves the index page
 // the client will show the correct view
 app.get('*', function (req, res) {
-    res.render('index', {mongoMessage: mongoMessage});
+    // WE USED THIS LINE TO VERIFY A ROUND TRIP TO DB
+    //res.render('index', {mongoMessage: mongoMessage});
+    res.render('index');
 });
 
 // NOTE: we created a Procfile in the root project dir
