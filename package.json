@@ -10,8 +10,8 @@
   {
     "//" : ["I added engines to tell heroku what versions are needed",
       "for your app"],
-    "node":"0.10.x",
-    "npm":"1.4.x"
+    "node":"0.12.x",
+    "npm":"2.7.x"
   },
   "author": "Larry Nickerson",
   "license": "ISC",
