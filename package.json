@@ -6,10 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "//" : ["I added engines to tell heroku what versions are needed",
-           "for your app"],
   "engines":
   {
+    "//" : ["I added engines to tell heroku what versions are needed",
+      "for your app"],
     "node":"0.10.x",
     "npm":"1.4.x"
   },
