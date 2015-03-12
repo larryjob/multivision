@@ -2,11 +2,12 @@ var express = require('express'),
     stylus = require('stylus'),  // require the stylus css compiler
     logger = require('morgan'),  // require the express morgan logger
     bodyParser = require('body-parser'); // for parsing request bodies
-    mongoose = require('mongoose');
+mongoose = require('mongoose');
 
 // set the enviromnet using Node's envireoment variable
 // //or set to developemnt if it is not already set
 var env = process.env.NODE_ENV || process.env.NODE_ENV || 'development';
+console.warn('YO! process.env.NODE_ENV = ' + process.env.NODE_ENV);
 
 // create the express application
 var app = express();
@@ -45,21 +46,29 @@ app.use(express.static(__dirname + '/public'));
 
 // connect to database on localhost, if multivision
 // database doesn't exist, mongo will create it
-mongoose.connect('mongodb://localhost/multivision');
 
-// get the db from the connection
+if (env === 'development') {
+    mongoose.connect('mongodb://localhost/multivision');
+    console.error('Using local development db...');
+}
+else {
+    mongoose.connect('mongodb://mgm:ecm8pod@ds033709.mongolab.com:33709/multivision');
+    console.error('Using mongolab production db...');
+}
+// get the db from the cßonnection
+
 var db = mongoose.connection;
 
-// listen to any error events so use bind
-db.on('error',console.error.bind(console,'connection error ...'));
+// listen to any error events
+db.on('error', console.error.bind(console, 'connection error ...'));//could have used a callback that calls console.error
 
 // listen to open event one time
-db.once('open', function callback(){
+db.once('open', function callback() {
     console.log('multivision db opened');
 });
 
 // create a mongoose schema object with field message of type string
-var messageSchema = mongoose.Schema({ message: String});
+var messageSchema = mongoose.Schema({message: String});
 
 // create a mongoose model object on a collection called Message using the schema
 // this implies a messages collection exists in the database
@@ -71,27 +80,26 @@ var mongoMessage;
 // search mongodb for a message document
 
 // connection actuall opens to fire the query
-MessageModel.findOne().exec(function(err,messageDoc){
-    if (!err){
-        if ( messageDoc){
+MessageModel.findOne().exec(function (err, messageDoc) {
+    if (!err) {
+        if (messageDoc) {
             mongoMessage = messageDoc.message;
             console.log('Got a message: ' + mongoMessage);
         }
-        else{
+        else {
             mongoMessage = "Didn't git NONE !!!"
             console.log('Did not get a message!!! ');
         }
     }
     else {
-        console.log('Got an error: ' + err );
+        console.log('Got an error: ' + err);
     }
 });
 
 // serve up the angularJS Partial JADE views
 app.get('/partials/:partialPath', function (req, res) {
-    res.render('partials/'+ req.params.partialPath);
-} );
-
+    res.render('partials/' + req.params.partialPath);
+});
 
 
 // set up server catch all route (WE WILL LET THE CLIENT DO THE ACTUAL VIEW ROUTING INSTEAD)
@@ -99,9 +107,21 @@ app.get('/partials/:partialPath', function (req, res) {
 // images, html etc.  a default route.  server always serves the index page
 // the client will show the correct view
 app.get('*', function (req, res) {
-    res.render('index', { mongoMessage: mongoMessage });
+    res.render('index', {mongoMessage: mongoMessage});
 });
 
+// NOTE: we created a Procfile in the root project dir
+// to tell heroku what file to run our webserver
+// i.e. we specified:   web: node server.js  inside of Procfile
+// add engines to tell heroku what versions are needed
+//for your app
+//NOTE: we also created and engines property inside of package.json
+// to tell heroku what versions of software we require for node and npm:
+//"engines":
+//{
+//    "node":"0.10.x",
+//    "npm":"1.4.x"
+//},
 var port = process.env.PORT || 3030;
 app.listen(port);
 console.log('Listening on port ' + port + ' ...');
