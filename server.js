@@ -91,15 +91,16 @@ MessageModel.findOne().exec(function (err, messageDoc) {
 //    res.render('partials/' + req.params.partialPath);
 //});
 
+// We replaced this code with Another improvement below i.e. '/app/*':
 // this /partials/*  allows for subfolders under the partials folder!
-app.get('/partials/*', function (req, res) {
-    // use this instead
-    console.log("YO MAN!!! THIS IS THE req.params[0] PATH: partials/" + req.params[0]);
-    // param is an array ant the 0th element matches whatever comes after '/partials'
-    // i.e. the oth element could be a bunch/of/subdirs/with/a/file at the end
-    // making this a more flexible route
-    res.render('partials/' + req.params[0]);
-});
+//app.get('/partials/*', function (req, res) {
+//    // use this instead
+//    console.log("YO MAN!!! THIS IS THE req.params[0] PATH: partials/" + req.params[0]);
+//    // param is an array ant the 0th element matches whatever comes after '/partials'
+//    // i.e. the oth element could be a bunch/of/subdirs/with/a/file at the end
+//    // making this a more flexible route
+//    res.render('partials/' + req.params[0]);
+//});
 
 
 
@@ -126,7 +127,7 @@ app.get('/app/*', function (req, res) {
 app.get('*', function (req, res) {
     // '*' route is a catch all route-- will match path not caught by the partials
     // route above and then render the index page
-    console.log("+++ WASSUP!!! RENDERING INDEX +++");
+    console.log("+++ WASSUP!!! RENDERING INDEX +++ and we're in: " + __dirname);
     // WE USED THIS LINE TO VERIFY A ROUND TRIP TO DB
     //res.render('index', {mongoMessage: mongoMessage});
     res.render('index');

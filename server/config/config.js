@@ -3,9 +3,11 @@
 var path = require('path');
 
 //__dirname is the current directory i.e. '/server/config'
-// we go up 2 dirs to get to the root which is multivision
-var rootPath = path.normalize(__dirname + '../../');
-
+// we go up 3 dirs to get to the root which is multivision
+//Users/larrynickerson/nodejs-sites/pluralsight/multivision/server/config is the __dirname !!!!
+console.log(__dirname + " is the __dirname !!!!");
+var rootPath = path.normalize(__dirname + '../../..');
+console.log("The normalized rootPath is: " + rootPath );
 // from this module, were exporting an object from which
 // we can grab keys from e.g. developement or production
 // when we require this in server.js
