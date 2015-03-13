@@ -11,9 +11,13 @@ var app = express();
 
 // create a config object we can pass to our refactored
 // express.js module we created...
-var config = {
-  rootPath : __dirname
-};
+//var config = {
+//  rootPath : __dirname
+//};
+// LET'S REQUIRE OUR NEW CONFIG FILE INSTEAD OF CREATING BY HAND
+// so, let's require the file and get the key from the exported object
+// which matches our env variable defined above.
+var config = require('./server/config/config.js')[env];
 
 //require the code we cut out and refactored into
 // the config/express.js file
@@ -24,16 +28,18 @@ require('./server/config/express.js')(app, config );
 // connect to database on localhost, if multivision
 // database doesn't exist, mongo will create it
 
-if (env === 'development') {
-    mongoose.connect('mongodb://localhost/multivision');
-    console.error('Using local development db...');
-}
-else {
-    mongoose.connect('mongodb://mgm:ecm8pod@ds033709.mongolab.com:33709/multivision');
-    console.error('Using mongolab production db...');
-}
-// get the db from the cßonnection
+//if (env === 'development') {
+//    mongoose.connect(config.db);
+//    console.error('Using local development db...');
+//}
+//else {
+//    mongoose.connect(config.db);
+//    console.error('Using mongolab production db...');
+//}
+mongoose.connect(config.db);
+console.error('Using ' + env + ' db...');
 
+// get the db from the connection
 var db = mongoose.connection;
 
 // listen to any error events
@@ -57,7 +63,7 @@ var MessageModel = mongoose.model('messages', messageSchema);
 var mongoMessage;
 // search mongodb for a message document
 
-// connection actuall opens to fire the query
+// connection actually opens to fire the query
 MessageModel.findOne().exec(function (err, messageDoc) {
     if (!err) {
         if (messageDoc) {
@@ -138,6 +144,8 @@ app.get('*', function (req, res) {
 //    "node":"0.10.x",
 //    "npm":"1.4.x"
 //},
-var port = process.env.PORT || 3030;
-app.listen(port);
-console.log('Listening on port ' + port + ' ...');
+
+// use the new config object instead
+//var port = process.env.PORT || 3030;
+app.listen(config.port);
+console.log('Listening on port ' + config.port + ' ...');
