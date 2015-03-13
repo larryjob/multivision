@@ -1,8 +1,5 @@
 var express = require('express'),
-    stylus = require('stylus'),  // require the stylus css compiler
-    logger = require('morgan'),  // require the express morgan logger
-    bodyParser = require('body-parser'); // for parsing request bodies
-mongoose = require('mongoose');
+    mongoose = require('mongoose');
 
 // set the enviromnet using Node's envireoment variable
 // //or set to developemnt if it is not already set
@@ -12,37 +9,17 @@ console.warn('YO! process.env.NODE_ENV = ' + process.env.NODE_ENV);
 // create the express application
 var app = express();
 
-// configure stylus css compiler
-function compile(str, path) {
-    return stylus(str).set('filename', path);
-}
+// create a config object we can pass to our refactored
+// express.js module we created...
+var config = {
+  rootPath : __dirname
+};
 
-// settings congiguration
-
-//configure my view engine
-//where are the views located
-app.set('views', __dirname + '/server/views');
-
-// set the view engine in use
-app.set('view engine', 'jade');
-
-// use the express morgan logger pacakage to log output
-app.use(logger('dev'));
-
-// set express to use the body parser
-app.use(bodyParser());
-
-// setup the app to use the stylus middleware
-app.use(stylus.middleware(
-    {
-        src: __dirname + '/public',  // sylus will comile css to public dir
-        compile: compile
-    }
-));
-
-// setup express to serve static files
-// express will serve static files from public dir
-app.use(express.static(__dirname + '/public'));
+//require the code we cut out and refactored into
+// the config/express.js file
+// then invoke the function and pass in what we
+// made it need :) i.e. app and a config object
+require('./server/config/express.js')(app, config );
 
 // connect to database on localhost, if multivision
 // database doesn't exist, mongo will create it
