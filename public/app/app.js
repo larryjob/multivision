@@ -12,6 +12,6 @@ angular.module('app').config(function ($routeProvider, $locationProvider) {
 
     // define client routes
     $routeProvider
-        .when('/', { templateUrl: 'partials/main/main', controller: 'mvMainCtrl'});
+        .when('/', { templateUrl: '/app/main/main', controller: 'mvMainCtrl'});
 });
 

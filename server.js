@@ -119,6 +119,23 @@ app.get('/partials/*', function (req, res) {
 });
 
 
+
+// Another improvement we can make is to put all the client views under the public
+// folder beside thier angular controllers. so we will adjust the path the server
+// will take to find the the files. NOTE: the 'multivision/public/app' folder is
+// at the same level as what used to be partials folder. but under the client path
+// instead of the server path.  So from the server's index page. we go up 2 then
+// down into public/app to get at the partial views we moved to the client public folder.
+app.get('/app/*', function (req, res) {
+    // use this instead
+    console.log("YO MAN!!! THIS IS THE req.params[0] PATH: ../../public/app/" + req.params[0]);
+    // param is an array ant the 0th element matches whatever comes after '/partials'
+    // i.e. the oth element could be a bunch/of/subdirs/with/a/file at the end
+    // making this a more flexible route
+    res.render('../../public/app/' + req.params[0]);
+});
+
+
 // set up server catch all route (WE WILL LET THE CLIENT DO THE ACTUAL VIEW ROUTING INSTEAD)
 //app.get('*');   // (*) means all routes will hit this route
 // images, html etc.  a default route.  server always serves the index page
