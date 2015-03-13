@@ -2,11 +2,14 @@ doctype
 html
     head
         title MultiVision
+        base(href="/")
         link(href="/favicon.ico", rel="shortcut icon", type="image/x-icon")
         link(rel="stylesheet", href="/css/bootstrap.css")
         link(rel="stylesheet", href="/vendor/toastr/toastr.css")
         link(rel="stylesheet", href="/css/site.css")
 
     body(ng-app='app')
+        <!-- main content-->
         block main-content
-        include scripts
+        <!-- end main content-->
+include scripts

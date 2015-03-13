@@ -1,4 +1,5 @@
-extends ../includes/layout.jade
+<!-- begin index -->
+extends ../includes/layout
 
 block main-content
     .navbar.navbar-inverse.navbar-fixed-top
@@ -11,10 +12,12 @@ block main-content
                     li
                         a(href="/") Home
 
-                div(ng-include="'/partials/navbar-login.jade'")
+                div(ng-include="'/partials/account/navbar-login'")
+    <!-- section content-->
     section.content
         div(ng-view)
-
+    <!-- end section content-->
 
     footer.container.text-center
         p &copy; 2015 Multivision Corp International Ltd.
+<!-- end begin index -->

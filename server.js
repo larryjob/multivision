@@ -98,8 +98,19 @@ MessageModel.findOne().exec(function (err, messageDoc) {
 });*/
 
 // serve up the angularJS Partial JADE views
-app.get('/partials/:partialPath', function (req, res) {
-    res.render('partials/' + req.params.partialPath);
+// this does not work when you have subfolders under view/partials folder
+// but if you had all partials in the partials folder it would be ok but
+// that is unmanageable if you have many partial views
+//app.get('/partials/:partialPath', function (req, res) {
+//    console.log("YO MAN!!! THIS IS THE req.params.partialPath PATH: partials/" + req.params.partialPath);
+//    res.render('partials/' + req.params.partialPath);
+//});
+
+// this /partials/*  allows for subfolders under the partials folder!
+app.get('/partials/*', function (req, res) {
+    // use this instead
+    console.log("YO MAN!!! THIS IS THE req.params[0] PATH: partials/" + req.params[0]);
+    res.render('partials/' + req.params[0]);
 });
 
 
@@ -108,6 +119,7 @@ app.get('/partials/:partialPath', function (req, res) {
 // images, html etc.  a default route.  server always serves the index page
 // the client will show the correct view
 app.get('*', function (req, res) {
+    console.log("+++ WASSUP!!! RENDERING INDEX +++");
     // WE USED THIS LINE TO VERIFY A ROUND TRIP TO DB
     //res.render('index', {mongoMessage: mongoMessage});
     res.render('index');

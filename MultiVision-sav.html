@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <style type="text/css">@charset "UTF-8";
+    [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak, .ng-hide:not(.ng-hide-animate) {
+        display: none !important;
+    }
+
+    ng\:form {
+        display: block;
+    }</style>
+    <title>MultiVision</title><!-- base href="http://localhost:3030/" -->
+    <link href="http://localhost:3030/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <link rel="stylesheet" href="MultiVision-sav_files/bootstrap.css">
+    <link rel="stylesheet" href="MultiVision-sav_files/toastr.css">
+    <link rel="stylesheet" href="MultiVision-sav_files/site.css">
+</head>
+<body class="ng-scope" ng-app="app"><!-- main content-->
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header"><a href="http://localhost:3030/" class="navbar-brand">MultiVision<h6>-Extreme Tech
+            Training</h6></a></div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="http://localhost:3030/">Home</a></li>
+            </ul>
+            <!-- ngInclude: '/partials/account/navbar-login' -->
+            <div class="ng-scope" ng-include="'/partials/account/navbar-login'"><!-- navbar-login-->
+                <div class="navbar-right ng-scope">
+                    <form class="navbar-form ng-pristine ng-valid">
+                        <div class="form-group"><input placeholder="Email" ng-model="username"
+                                                       class="form-control ng-pristine ng-untouched ng-valid"></div>
+                        <div class="form-group"><input placeholder="Password" password="password" class="form-control"
+                                                       type="password"></div>
+                        <button ng-click="signin(username, password)" class="btn btn-primary">Sign In</button>
+                    </form>
+                </div>
+                <!-- end navbar-login--></div>
+        </div>
+    </div>
+</div>
+<!-- section content-->
+<section class="content"><!-- ngView:  -->
+    <div class="ng-scope" ng-view=""><!-- Main View-->
+        <div class="container ng-scope">
+            <div class="jumbotron"><h1>Multivision</h1>
+
+                <p>Welcome to MultiVision! The most comprehensive and complete tech training on the web!</p></div>
+            <div class="row">
+                <div class="col-md-6"><!-- ngInclude: '/partials/main/featured-courses' -->
+                    <div class="ng-scope" ng-include="'/partials/main/featured-courses'"><!-- featured courses-->
+                        <div class="panel panel-primary ng-scope">
+                            <div class="panel-heading text-center">Featured Courses</div>
+                            <!--.panel-body Body Goes Here-->
+                            <div class="panel-body"><!-- ngRepeat: course in courses | filter:{featured:true} -->
+                                <div ng-repeat="course in courses | filter:{featured:true}" class="row ng-scope">
+                                    <div class="col-md-12 ng-binding">C# for Sociopaths</div>
+                                </div>
+                                <!-- end ngRepeat: course in courses | filter:{featured:true} -->
+                                <div ng-repeat="course in courses | filter:{featured:true}" class="row ng-scope">
+                                    <div class="col-md-12 ng-binding">C# for Non-Sociopaths</div>
+                                </div>
+                                <!-- end ngRepeat: course in courses | filter:{featured:true} -->
+                                <div ng-repeat="course in courses | filter:{featured:true}" class="row ng-scope">
+                                    <div class="col-md-12 ng-binding">Pedantic C++</div>
+                                </div>
+                                <!-- end ngRepeat: course in courses | filter:{featured:true} -->
+                                <div ng-repeat="course in courses | filter:{featured:true}" class="row ng-scope">
+                                    <div class="col-md-12 ng-binding">JavaScript for People over 20</div>
+                                </div>
+                                <!-- end ngRepeat: course in courses | filter:{featured:true} -->
+                                <div ng-repeat="course in courses | filter:{featured:true}" class="row ng-scope">
+                                    <div class="col-md-12 ng-binding">Maintainable Code for Cowards</div>
+                                </div>
+                                <!-- end ngRepeat: course in courses | filter:{featured:true} -->
+                                <div ng-repeat="course in courses | filter:{featured:true}" class="row ng-scope">
+                                    <div class="col-md-12 ng-binding">A Survival Guide to Code Reviews</div>
+                                </div>
+                                <!-- end ngRepeat: course in courses | filter:{featured:true} -->
+                                <div ng-repeat="course in courses | filter:{featured:true}" class="row ng-scope">
+                                    <div class="col-md-12 ng-binding">How to Job Hunt Without Alerting your Boss</div>
+                                </div>
+                                <!-- end ngRepeat: course in courses | filter:{featured:true} -->
+                                <div ng-repeat="course in courses | filter:{featured:true}" class="row ng-scope">
+                                    <div class="col-md-12 ng-binding">Writing Code that Doesn't Suck</div>
+                                </div>
+                                <!-- end ngRepeat: course in courses | filter:{featured:true} -->
+                                <div ng-repeat="course in courses | filter:{featured:true}" class="row ng-scope">
+                                    <div class="col-md-12 ng-binding">How to Deal with Narcissistic Coworkers</div>
+                                </div>
+                                <!-- end ngRepeat: course in courses | filter:{featured:true} -->
+                                <div ng-repeat="course in courses | filter:{featured:true}" class="row ng-scope">
+                                    <div class="col-md-12 ng-binding">Death March Coding for Fun and Profit</div>
+                                </div>
+                                <!-- end ngRepeat: course in courses | filter:{featured:true} --></div>
+                        </div>
+                        <!-- end featured courses--></div>
+                </div>
+                <div class="col-md-6"><!-- ngInclude: '/partials/main/new-courses' -->
+                    <div class="ng-scope" ng-include="'/partials/main/new-courses'"><!-- new courses-->
+                        <div class="panel panel-primary ng-scope">
+                            <div class="panel-heading text-center">New Courses</div>
+                            <div class="panel-body">
+                                <!-- ngRepeat: course in courses | orderBy:'published':true | limitTo:10 -->
+                                <div ng-repeat="course in courses | orderBy:'published':true | limitTo:10"
+                                     class="row ng-scope">
+                                    <div class="col-md-3 ng-binding">Nov 1</div>
+                                    <div class="col-md-9 ng-binding">Telling Recruiters to Leave You Alone</div>
+                                </div>
+                                <!-- end ngRepeat: course in courses | orderBy:'published':true | limitTo:10 -->
+                                <div ng-repeat="course in courses | orderBy:'published':true | limitTo:10"
+                                     class="row ng-scope">
+                                    <div class="col-md-3 ng-binding">Oct 13</div>
+                                    <div class="col-md-9 ng-binding">JavaScript for People over 20</div>
+                                </div>
+                                <!-- end ngRepeat: course in courses | orderBy:'published':true | limitTo:10 -->
+                                <div ng-repeat="course in courses | orderBy:'published':true | limitTo:10"
+                                     class="row ng-scope">
+                                    <div class="col-md-3 ng-binding">Oct 13</div>
+                                    <div class="col-md-9 ng-binding">Writing Code that Doesn't Suck</div>
+                                </div>
+                                <!-- end ngRepeat: course in courses | orderBy:'published':true | limitTo:10 -->
+                                <div ng-repeat="course in courses | orderBy:'published':true | limitTo:10"
+                                     class="row ng-scope">
+                                    <div class="col-md-3 ng-binding">Oct 12</div>
+                                    <div class="col-md-9 ng-binding">C# for Non-Sociopaths</div>
+                                </div>
+                                <!-- end ngRepeat: course in courses | orderBy:'published':true | limitTo:10 -->
+                                <div ng-repeat="course in courses | orderBy:'published':true | limitTo:10"
+                                     class="row ng-scope">
+                                    <div class="col-md-3 ng-binding">Oct 7</div>
+                                    <div class="col-md-9 ng-binding">How to Job Hunt Without Alerting your Boss</div>
+                                </div>
+                                <!-- end ngRepeat: course in courses | orderBy:'published':true | limitTo:10 -->
+                                <div ng-repeat="course in courses | orderBy:'published':true | limitTo:10"
+                                     class="row ng-scope">
+                                    <div class="col-md-3 ng-binding">Oct 5</div>
+                                    <div class="col-md-9 ng-binding">C# for Sociopaths</div>
+                                </div>
+                                <!-- end ngRepeat: course in courses | orderBy:'published':true | limitTo:10 -->
+                                <div ng-repeat="course in courses | orderBy:'published':true | limitTo:10"
+                                     class="row ng-scope">
+                                    <div class="col-md-3 ng-binding">Oct 1</div>
+                                    <div class="col-md-9 ng-binding">Super Duper Expert C#</div>
+                                </div>
+                                <!-- end ngRepeat: course in courses | orderBy:'published':true | limitTo:10 -->
+                                <div ng-repeat="course in courses | orderBy:'published':true | limitTo:10"
+                                     class="row ng-scope">
+                                    <div class="col-md-3 ng-binding">Oct 1</div>
+                                    <div class="col-md-9 ng-binding">Code Reviews for Jerks</div>
+                                </div>
+                                <!-- end ngRepeat: course in courses | orderBy:'published':true | limitTo:10 -->
+                                <div ng-repeat="course in courses | orderBy:'published':true | limitTo:10"
+                                     class="row ng-scope">
+                                    <div class="col-md-3 ng-binding">Aug 1</div>
+                                    <div class="col-md-9 ng-binding">How to Keep your Soul and go into Management</div>
+                                </div>
+                                <!-- end ngRepeat: course in courses | orderBy:'published':true | limitTo:10 -->
+                                <div ng-repeat="course in courses | orderBy:'published':true | limitTo:10"
+                                     class="row ng-scope">
+                                    <div class="col-md-3 ng-binding">Jul 12</div>
+                                    <div class="col-md-9 ng-binding">Visual Basic for Visual Basic Developers</div>
+                                </div>
+                                <!-- end ngRepeat: course in courses | orderBy:'published':true | limitTo:10 --></div>
+                        </div>
+                        <!-- end new courses--></div>
+                </div>
+            </div>
+        </div>
+        <!-- End Main View--></div>
+</section>
+<!-- end section content-->
+<footer class="container text-center"><p>© 2015 Multivision Corp International Ltd.</p></footer>
+<!-- end main content-->
+<script type="text/javascript" src="MultiVision-sav_files/jquery.js"></script>
+<script type="text/javascript" src="MultiVision-sav_files/angular.js"></script>
+<script type="text/javascript" src="MultiVision-sav_files/angular-resource.js"></script>
+<script type="text/javascript" src="MultiVision-sav_files/angular-route.js"></script>
+<script type="text/javascript" src="MultiVision-sav_files/app.js"></script>
+<script type="text/javascript" src="MultiVision-sav_files/mvMainCtrl.js"></script>
+</body>
+</html>
