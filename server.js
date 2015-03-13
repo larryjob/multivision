@@ -102,6 +102,8 @@ MessageModel.findOne().exec(function (err, messageDoc) {
 // but if you had all partials in the partials folder it would be ok but
 // that is unmanageable if you have many partial views
 //app.get('/partials/:partialPath', function (req, res) {
+//    //this route only matches files directly inside /partials
+//    // files in subdirs will then fall thru to our '*' route and not be found
 //    console.log("YO MAN!!! THIS IS THE req.params.partialPath PATH: partials/" + req.params.partialPath);
 //    res.render('partials/' + req.params.partialPath);
 //});
@@ -110,6 +112,9 @@ MessageModel.findOne().exec(function (err, messageDoc) {
 app.get('/partials/*', function (req, res) {
     // use this instead
     console.log("YO MAN!!! THIS IS THE req.params[0] PATH: partials/" + req.params[0]);
+    // param is an array ant the 0th element matches whatever comes after '/partials'
+    // i.e. the oth element could be a bunch/of/subdirs/with/a/file at the end
+    // making this a more flexible route
     res.render('partials/' + req.params[0]);
 });
 
@@ -119,6 +124,8 @@ app.get('/partials/*', function (req, res) {
 // images, html etc.  a default route.  server always serves the index page
 // the client will show the correct view
 app.get('*', function (req, res) {
+    // '*' route is a catch all route-- will match path not caught by the partials
+    // route above and then render the index page
     console.log("+++ WASSUP!!! RENDERING INDEX +++");
     // WE USED THIS LINE TO VERIFY A ROUND TRIP TO DB
     //res.render('index', {mongoMessage: mongoMessage});
