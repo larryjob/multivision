@@ -17,11 +17,13 @@ module.exports = {
     development: {
         rootPath: rootPath,
         db: "mongodb://localhost/multivision",
-        port: process.env.PORT || 3030  // default 3030 in dev
+        port: process.env.PORT || 3030,  // default 3030 in dev
+        env: "development"
     },
     production: {
         rootPath: rootPath,
         db: "mongodb://mgm:ecm8pod@ds033709.mongolab.com:33709/multivision",
-        port: process.env.PORT || 80    // default 80 in production
+        port: process.env.PORT || 80,    // default 80 in production
+        env: "production"
     }
 };
